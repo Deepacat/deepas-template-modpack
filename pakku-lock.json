@@ -417,6 +417,7 @@
         {
             "pakku_id": "lM67JZEA9kwi5pu7",
             "type": "MOD",
+            "side": "CLIENT",
             "slug": {
                 "curseforge": "chloride"
             },
@@ -1957,6 +1958,48 @@
             ]
         },
         {
+            "pakku_id": "96QQHwlFMptVig0i",
+            "pakku_links": [
+                "MOxE09PMD2kSuqKm"
+            ],
+            "type": "MOD",
+            "slug": {
+                "curseforge": "paxi"
+            },
+            "name": {
+                "curseforge": "Paxi (Forge)"
+            },
+            "id": {
+                "curseforge": "515708"
+            },
+            "files": [
+                {
+                    "type": "curseforge",
+                    "file_name": "Paxi-1.20-Forge-4.0.jar",
+                    "mc_versions": [
+                        "1.20.1",
+                        "1.20"
+                    ],
+                    "loaders": [
+                        "forge"
+                    ],
+                    "release_type": "release",
+                    "url": "https://edge.forgecdn.net/files/4749/994/Paxi-1.20-Forge-4.0.jar",
+                    "id": "4749994",
+                    "parent_id": "515708",
+                    "hashes": {
+                        "sha1": "a3a7008e07a27b3c831af7e4c82fbbc10a4da328",
+                        "md5": "e0dbfe0f77e5a07d6fc8389b2398f266"
+                    },
+                    "required_dependencies": [
+                        "421850"
+                    ],
+                    "size": 96892,
+                    "date_published": "2023-09-12T22:25:59.820Z"
+                }
+            ]
+        },
+        {
             "pakku_id": "3XmP4xRMaRyCBy4N",
             "type": "MOD",
             "slug": {
@@ -2026,6 +2069,47 @@
                     "required_dependencies": [],
                     "size": 512186,
                     "date_published": "2026-05-12T01:06:33.563Z"
+                }
+            ]
+        },
+        {
+            "pakku_id": "Jsz7Jn5zzj9FsWYs",
+            "type": "MOD",
+            "side": "CLIENT",
+            "slug": {
+                "curseforge": "probejs"
+            },
+            "name": {
+                "curseforge": "ProbeJS"
+            },
+            "id": {
+                "curseforge": "585406"
+            },
+            "export": false,
+            "files": [
+                {
+                    "type": "curseforge",
+                    "file_name": "probejs-6.0.1-forge.jar",
+                    "mc_versions": [
+                        "1.20.1"
+                    ],
+                    "loaders": [
+                        "neoforge",
+                        "forge"
+                    ],
+                    "release_type": "release",
+                    "url": "https://edge.forgecdn.net/files/5227/399/probejs-6.0.1-forge.jar",
+                    "id": "5227399",
+                    "parent_id": "585406",
+                    "hashes": {
+                        "sha1": "5380211b1c2891f454a136545721526b184d8513",
+                        "md5": "69dfe15b710b9b213feb7eb788ed83a9"
+                    },
+                    "required_dependencies": [
+                        "238086"
+                    ],
+                    "size": 2365466,
+                    "date_published": "2024-04-01T14:08:56.003Z"
                 }
             ]
         },
@@ -2745,6 +2829,82 @@
                     "required_dependencies": [],
                     "size": 83163,
                     "date_published": "2024-11-19T17:48:14.147Z"
+                }
+            ]
+        },
+        {
+            "pakku_id": "0UNQERc5yxjmPQwa",
+            "type": "MOD",
+            "slug": {
+                "curseforge": "worldedit"
+            },
+            "name": {
+                "curseforge": "WorldEdit"
+            },
+            "id": {
+                "curseforge": "225608"
+            },
+            "export": false,
+            "files": [
+                {
+                    "type": "curseforge",
+                    "file_name": "worldedit-mod-7.2.15.jar",
+                    "mc_versions": [
+                        "1.20.1",
+                        "1.20"
+                    ],
+                    "loaders": [
+                        "fabric",
+                        "forge"
+                    ],
+                    "release_type": "release",
+                    "url": "https://edge.forgecdn.net/files/4586/218/worldedit-mod-7.2.15.jar",
+                    "id": "4586218",
+                    "parent_id": "225608",
+                    "hashes": {
+                        "sha1": "9c52765ca56f917ef8cbafc20e9a4f45c346508f",
+                        "md5": "bd0e7cff7896348faab92e43300d0639"
+                    },
+                    "required_dependencies": [],
+                    "size": 5825402,
+                    "date_published": "2023-06-14T09:09:03.587Z"
+                }
+            ]
+        },
+        {
+            "pakku_id": "MOxE09PMD2kSuqKm",
+            "type": "MOD",
+            "slug": {
+                "curseforge": "yungs-api"
+            },
+            "name": {
+                "curseforge": "YUNG's API (Forge/NeoForge)"
+            },
+            "id": {
+                "curseforge": "421850"
+            },
+            "files": [
+                {
+                    "type": "curseforge",
+                    "file_name": "YungsApi-1.20-Forge-4.0.6.jar",
+                    "mc_versions": [
+                        "1.20.1",
+                        "1.20"
+                    ],
+                    "loaders": [
+                        "forge"
+                    ],
+                    "release_type": "release",
+                    "url": "https://edge.forgecdn.net/files/5769/971/YungsApi-1.20-Forge-4.0.6.jar",
+                    "id": "5769971",
+                    "parent_id": "421850",
+                    "hashes": {
+                        "sha1": "af584b690f5646c6032002b58abc4591beed3833",
+                        "md5": "fe79f43dba8edbb8ede99f4e358e5b0c"
+                    },
+                    "required_dependencies": [],
+                    "size": 370524,
+                    "date_published": "2024-09-30T06:13:49.387Z"
                 }
             ]
         },
