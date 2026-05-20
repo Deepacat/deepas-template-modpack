@@ -153,15 +153,15 @@ jobs:
             const fs = require('fs');
             const path = './modpack_version_meta.json';
             let content = fs.readFileSync(path, 'utf8');
-            
+
             // Remove // comments (preserve http://) and /* */ comments
-            // Strip // comments (but not inside strings – simplified, enough for your file)
+            // Strip // comments (but not inside strings – simplified)
             content = content.replace(/\/\/.*$/gm, '');
             // Remove /* */ comments
             content = content.replace(/\/\*[\s\S]*?\*\//g, '');
             // Remove trailing commas (common in JSONC)
             content = content.replace(/,\s*([\]}])/g, '$1');
-            
+
             const data = JSON.parse(content);
             core.setOutput('release_type', data.release_type);
             core.setOutput('version', data.version);
@@ -317,13 +317,11 @@ jobs:
 
       - name: Create Pull Request if tag not found
         if: ${{ steps.check_existing_pr.outputs.exists == 'false' }}
-        uses: devops-infra/action-pull-request@v0.6.1
+        uses: peter-evans/create-pull-request@v7
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          source_branch: dev
-          target_branch: main
-          ignore_users: "dependabot"
-          draft: true
+          token: ${{ secrets.GITHUB_TOKEN }}
+          branch: dev
+          base: main
           title: "Release: ${{ steps.changelog.outputs.version }}"
           body: |
             **This is an automated Pull Request from the dev branch.**
@@ -333,6 +331,8 @@ jobs:
             **Loader**: `${{ needs.info.outputs.loader_type }}-${{ needs.info.outputs.loader_version }}`
 
             ${{ needs.info.outputs.changelog }}
+          draft: true
+          delete-branch: false
 
   lint:
     name: Lint KubeJS
@@ -558,7 +558,7 @@ jobs:
         run: |
           if [ "${{ secrets.CURSEFORGE_TOKEN }}" == '' ]; then
             echo '::error::No value found for secret key `CURSEFORGE_TOKEN`. See https://docs.github.com/en/actions/security-guides/encrypted-secrets#creating-encrypted-secrets-for-a-repository' && exit 1
-          fi  
+          fi
 
       - name: Download artifact
         uses: actions/download-artifact@v5.0.0
@@ -604,8 +604,8 @@ jobs:
         id: truncated
         uses: cisox/read-more-action@v1.0.2
         with:
-          text: '${{ needs.info.outputs.changelog }}'
-          max_chars: '1450'
+          text: "${{ needs.info.outputs.changelog }}"
+          max_chars: "1450"
 
       - name: Send Discord message
         uses: hugoalh/send-discord-webhook-ghaction@v7.0.5
@@ -618,7 +618,7 @@ jobs:
             **Release**: `${{ needs.info.outputs.project_full_name }}`
             **Release Type**: `${{ needs.info.outputs.release_type }}`
             **Game Version**: `${{ needs.info.outputs.mc_version }}`
-          
+
             [CurseForge](https://www.curseforge.com/minecraft/modpacks/template-pack/files/${{ needs.release-curseforge.outputs.id }}) • [GitHub](${{ needs.release-github.outputs.url }}) • [Issues](https://github.com/${{ github.repository }}/issues)
             ```markdown
             ${{ steps.truncated.outputs.text  }}
