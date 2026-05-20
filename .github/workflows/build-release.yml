@@ -65,24 +65,25 @@ jobs:
         id: latest_tag
         shell: bash
         run: |
-          tag=$(git describe --tags --abbrev=0 origin/main)
-          if [ -z "$tag" ]; then
-            echo "Latest tag not found, likely the first time this script has been ran. " && exit 1
-          else
-            echo "Latest tag found: $tag"
-            echo "tag=$tag" >> $GITHUB_OUTPUT
-          fi
+          tag=$(git describe --tags --abbrev=0 origin/main 2>/dev/null || echo "v0.0.0")
+          echo "Latest tag found: $tag"
+          echo "tag=$tag" >> $GITHUB_OUTPUT
 
       - name: Check pakku-lock.json in previous tag
         id: check_pakku_lock_prev
         shell: bash
         run: |
-          if git cat-file -e ${{ steps.latest_tag.outputs.tag }}:./pakku-lock.json 2>/dev/null; then
-            echo "File pakku-lock.json found in previous tag"
-            echo "file_found=true" >> $GITHUB_OUTPUT
-          else
-            echo "File pakku-lock.json not found in previous tag"
+          if [[ "${{ steps.latest_tag.outputs.tag }}" == "v0.0.0" ]]; then
+            echo "Using dummy tag, skipping previous tag check"
             echo "file_found=false" >> $GITHUB_OUTPUT
+          else
+            if git cat-file -e ${{ steps.latest_tag.outputs.tag }}:./pakku-lock.json 2>/dev/null; then
+              echo "File pakku-lock.json found in previous tag"
+              echo "file_found=true" >> $GITHUB_OUTPUT
+            else
+              echo "File pakku-lock.json not found in previous tag"
+              echo "file_found=false" >> $GITHUB_OUTPUT
+            fi
           fi
 
       - name: Check and copy pakku-lock.json from previous tag
