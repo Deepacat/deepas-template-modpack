@@ -69,6 +69,10 @@ kubejs/modpackData/**
 /config/emixx/*client.*
 /config/worldedit/
 /config/emi.css
+/config/jade/jade.json
+/config/jade/sort-order.json
+/config/MouseTweaks.cfg
+/config/dynamic_fps.json
 
 !/config/defaultsettings/**
 !/config/sophisticatedstorage-client.toml
@@ -98,7 +102,6 @@ kubejs/modpackData/**
 /config/chiselsandbits-common.toml
 /config/defaultworldtype/world-presets.txt
 /config/jecalculation/record.json
-/config/jade/sort-order.json
 /config/jei*
 /config/embeddium++.toml
 /config/darkmodeeverywhereshaders*
