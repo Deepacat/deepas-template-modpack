@@ -16,7 +16,7 @@ jobs:
   info:
     name: Project Info
     runs-on: ubuntu-latest
-    if: ${{  github.repository_owner == 'Deepacat' }}
+    if: ${{  github.repository_owner == 'Deepacat' }} ## Change this to your github username
     outputs:
       project_version: ${{ steps.check.outputs.project_version }}
       project_name: ${{ steps.check.outputs.project_name }}
@@ -509,9 +509,6 @@ jobs:
           if [ ! -f ${{ needs.info.outputs.project_file_name }}-curseforge.zip ]; then
             echo '::error::No value found for artifact `curseforge.zip`.' && exit 1
           fi
-          # if [ ! -f ${{ needs.info.outputs.project_file_name }}-modrinth.mrpack ]; then
-          #   echo '::error::No value found for artifact `modrinth.mrpack`.' && exit 1
-          # fi
           if [ ! -f ${{ needs.info.outputs.project_file_name }}-serverpack.zip ]; then
             echo '::error::No value found for artifact `serverpack.zip`.' && exit 1
           fi
@@ -539,7 +536,6 @@ jobs:
             ${{ steps.format_diff.outputs.text }}
           files: |
             ${{ needs.info.outputs.project_file_name }}-curseforge.zip
-            ${{ needs.info.outputs.project_file_name }}-modrinth.mrpack
             ${{ needs.info.outputs.project_file_name }}-serverpack.zip
           prerelease: ${{ needs.info.outputs.release_type != 'release' }}
           generate_release_notes: true
@@ -612,8 +608,8 @@ jobs:
         uses: hugoalh/send-discord-webhook-ghaction@v7.0.5
         with:
           key: ${{ secrets.discord-webhook  }}
-          username: "Panpack" # Change this!
-          avatar_url: "https://media.forgecdn.net/avatars/thumbnails/798/822/64/64/638160732420962168.png" # Change this! (and the below curseforge url)
+          username: "Template Modpack Webhook" # Change this to whatever you want the webhooks bot name to be
+          avatar_url: "https://media.forgecdn.net/avatars/thumbnails/798/822/64/64/638160732420962168.png" # Change this! (and the below curseforge url to yours)
           content_links_no_embed: .+
           content: |
             **Release**: `${{ needs.info.outputs.project_full_name }}`
