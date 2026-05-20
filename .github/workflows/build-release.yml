@@ -149,7 +149,7 @@ jobs:
         id: modpack_metadata
         uses: ActionsTools/read-json-action@v1.0.5
         with:
-          file_path: "sr-meta.json"
+          file_path: "modpack_version_meta.json"
 
       - name: Get Pakku-lock Info
         id: pakku_lock_info
