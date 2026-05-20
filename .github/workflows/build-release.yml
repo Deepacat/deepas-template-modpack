@@ -147,9 +147,24 @@ jobs:
 
       - name: Get Modpack Metadata
         id: modpack_metadata
-        uses: ActionsTools/read-json-action@v1.0.5
+        uses: actions/github-script@v7
         with:
-          file_path: "modpack_version_meta.json"
+          script: |
+            const fs = require('fs');
+            const path = './modpack_version_meta.json';
+            let content = fs.readFileSync(path, 'utf8');
+            
+            // Remove // comments (preserve http://) and /* */ comments
+            // Strip // comments (but not inside strings – simplified, enough for your file)
+            content = content.replace(/\/\/.*$/gm, '');
+            // Remove /* */ comments
+            content = content.replace(/\/\*[\s\S]*?\*\//g, '');
+            // Remove trailing commas (common in JSONC)
+            content = content.replace(/,\s*([\]}])/g, '$1');
+            
+            const data = JSON.parse(content);
+            core.setOutput('release_type', data.release_type);
+            core.setOutput('version', data.version);
 
       - name: Get Pakku-lock Info
         id: pakku_lock_info
