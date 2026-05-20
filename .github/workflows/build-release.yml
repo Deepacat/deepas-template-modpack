@@ -315,15 +315,11 @@ jobs:
               core.setOutput('exists', true);
             }
 
-      - name: Create Pull Request if tag not found
+      - name: Create Pull Request using gh
         if: ${{ steps.check_existing_pr.outputs.exists == 'false' }}
-        uses: peter-evans/create-pull-request@v7
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          branch: dev
-          base: main
-          title: "Release: ${{ steps.changelog.outputs.version }}"
-          body: |
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PR_BODY: |
             **This is an automated Pull Request from the dev branch.**
             **Name**: ${{ needs.info.outputs.project_name }}
             **Release**:  `${{ steps.changelog.outputs.version }}`
@@ -331,8 +327,13 @@ jobs:
             **Loader**: `${{ needs.info.outputs.loader_type }}-${{ needs.info.outputs.loader_version }}`
 
             ${{ needs.info.outputs.changelog }}
-          draft: true
-          delete-branch: false
+        run: |
+          gh pr create \
+            --base main \
+            --head dev \
+            --title "Release: ${{ steps.changelog.outputs.version }}" \
+            --body "$PR_BODY" \
+            --draft
 
   lint:
     name: Lint KubeJS
