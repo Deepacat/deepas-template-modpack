@@ -362,6 +362,14 @@
     "curseForgeHash": 1389353380,
     "modrinthHash": "804deb0bd34d69cad873170642b9d7e47fa0d6ad"
   },
+  "MissingModsWarning-forge-1.20.1-0.jar": {
+    "jarName": "MissingModsWarning-forge-1.20.1-0.jar",
+    "modId": "missingmodswarning",
+    "name": "MissingModsWarning",
+    "version": "0",
+    "curseForgeHash": 1615345136,
+    "modrinthHash": "ce5ee82f7d74c4120f0636bc7268cadc6081271f"
+  },
   "modernfix-forge-5.27.25+mc1.20.1.jar": {
     "jarName": "modernfix-forge-5.27.25+mc1.20.1.jar",
     "modId": "modernfix",
