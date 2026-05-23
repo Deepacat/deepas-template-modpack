@@ -11,8 +11,7 @@ And second, configure your github repo settings at `https://github.com/username/
 # Workflow usage
 
 You should never be pushing directly into `main`.<br>
-You should nearly always be pushing to the `dev` branch when working on the modpack,<br>
-or often when collaborating with others another branch like `deepa/bombRangefix` that you will later merge into `dev`.<br>
+You should nearly always be pushing to the `dev` branch when working on the modpack, or often when collaborating with others another branch like `deepa/bombRangefix` that you will later merge into `dev`, not `main`.<br>
 
 Once you are done working on your files and are ready to create a release, edit `minecraft/CHANGELOG.md` adding a new changelog entry.<br>
 E.g. the 1.0.0 here:
@@ -36,6 +35,10 @@ Upon merging said automatically generated pull request, it will run the release 
 a github release, alongside a curseforge release if you have properly supplied your repository<br>
 the necessary tokens from your curseforge project and account (See below for Curseforge releases).
 
+Note that the workflow replaces contents of several files
+- Replaces DEV with your releases version number in `pakku.json`, `modpack_version_meta.json`, `config/fancymenu/customization/title_screen_layout.txt` (For if you have fancymenu and a custom title with a version number)
+- Replaces the Minecraft & modloader versions in serverpack files
+- Removes entries with `"export": false` in pakku.json from `config/crash_assistant/modlist.json` to avoid crash assistant logs telling users that they removed mods like ProbeJS or Worldedit, which are meant for dev environment only.
 
 ## Github Releases:
 When merging the generated pull request a github release will be created automatically with the version tag.

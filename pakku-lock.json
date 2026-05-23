@@ -1694,6 +1694,42 @@
             ]
         },
         {
+            "pakku_id": "yT4nr9dQL9tGWCrH",
+            "type": "MOD",
+            "slug": {
+                "curseforge": "missing-mods-warning"
+            },
+            "name": {
+                "curseforge": "Missing Mods Warning"
+            },
+            "id": {
+                "curseforge": "1015776"
+            },
+            "files": [
+                {
+                    "type": "curseforge",
+                    "file_name": "MissingModsWarning-forge-1.20.1-0.jar",
+                    "mc_versions": [
+                        "1.20.1"
+                    ],
+                    "loaders": [
+                        "forge"
+                    ],
+                    "release_type": "release",
+                    "url": "https://edge.forgecdn.net/files/5328/846/MissingModsWarning-forge-1.20.1-0.jar",
+                    "id": "5328846",
+                    "parent_id": "1015776",
+                    "hashes": {
+                        "sha1": "ce5ee82f7d74c4120f0636bc7268cadc6081271f",
+                        "md5": "ee734e3f40bc2724ab723cba342b5794"
+                    },
+                    "required_dependencies": [],
+                    "size": 30409,
+                    "date_published": "2024-05-09T04:43:31.273Z"
+                }
+            ]
+        },
+        {
             "pakku_id": "0WloiLkpJrRLwkLM",
             "type": "MOD",
             "slug": {
@@ -2605,6 +2641,45 @@
                     ],
                     "size": 246413,
                     "date_published": "2025-10-22T22:53:09.443Z"
+                }
+            ]
+        },
+        {
+            "pakku_id": "83IK3ppAbZl83B0w",
+            "type": "MOD",
+            "slug": {
+                "curseforge": "structurify"
+            },
+            "name": {
+                "curseforge": "Structurify – Structure Control"
+            },
+            "id": {
+                "curseforge": "1087551"
+            },
+            "files": [
+                {
+                    "type": "curseforge",
+                    "file_name": "structurify-forge-2.0.25+mc1.20.1.jar",
+                    "mc_versions": [
+                        "1.20.1",
+                        "1.20"
+                    ],
+                    "loaders": [
+                        "forge"
+                    ],
+                    "release_type": "release",
+                    "url": "https://edge.forgecdn.net/files/8108/263/structurify-forge-2.0.25+mc1.20.1.jar",
+                    "id": "8108263",
+                    "parent_id": "1087551",
+                    "hashes": {
+                        "sha1": "488cb9770e15d14b586db1c79bc84f420c606c86",
+                        "md5": "0d6c4be0c0306260187f82c1ad2eaf03"
+                    },
+                    "required_dependencies": [
+                        "667299"
+                    ],
+                    "size": 633025,
+                    "date_published": "2026-05-18T10:37:01.183Z"
                 }
             ]
         },
