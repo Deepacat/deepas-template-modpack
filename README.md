@@ -1,7 +1,7 @@
 <h1 align="center">Deepa's modpack development template</h1>
 <p align="center"><b><i>Deepa's preferred modpack development environment, focused on forge 1.20.1, with preset mods and github actions</i></b></p>
 <h1 align="center">
-    <a href="https://github.com/ThePansmith/PanPack/blob/main/LICENSE.md"><img src="https://img.shields.io/github/license/ThePansmith/PanPack?style=for-the-badge&logo=github" alt="License"></a>
+    <a href="https://github.com/ThePansmith/PanPack/blob/main/LICENSE.md"><img src="https://img.shields.io/github/license/Deepacat/deepas-template-modpack?style=for-the-badge&logo=github" alt="License"></a>
 </h1>
 
 ## Features
@@ -26,35 +26,40 @@
     - A client config default options setup, preventing users having their client configs overwritten on modpack updates
 
 ### Requirements
-* This template was written with [Prism Launcher](https://prismlauncher.org/) in mind. Those using other launchers will need to adjust setup instructions as needed to allow their launcher to recognize the template as an instance.
-* Expects understanding git and some basics like commits, pull requests, merging, pushing/pulling
+* This template was written solely with [Prism Launcher](https://prismlauncher.org/) in mind. Those using other launchers will need to adjust setup instructions as needed to allow their launcher to recognize the template as an instance.
+* Expects understanding git and some basics like commits, pull requests, merging, pushing/pulling.
+  * Recommended to install https://gitforwindows.org/ on windows
+* Optionally but optimally, install [Pakku](https://juraj-hrivnak.github.io/Pakku/installing-pakku.html) locally. Alternatively you could just use the .jar file located in the templates minecraft folder with `java -jar pakku.jar help`.
+  * For using Pakku to pull curseforge mods, add your curseforge accounts API key to pakku. [See guide on the Pakku wiki](https://juraj-hrivnak.github.io/Pakku/setting-up-a-modpack.html#configuring-curseforge-access)
+* Python 3.6+ (To use the dev instance setup script)
+    * All platforms: https://www.python.org/downloads/
+    * Win11/Win10 with winget: `winget install python3` (In cmd/powershell)
 
 ## Setup
-### As a template
-1. Clone your copy of this template into an empty [`(instancename)\minecraft`](https://github.com/user-attachments/assets/f9de6554-925d-4827-b51c-c7159e6f915f) folder
-2. Copy the contents of `(instancename)\minecraft\.pakku\prism-overrides`[^2] into your `(instancename)` folder to have a working [Prism Instance](https://prismlauncher.org/).[^3]
+### Using this template for a new Modpack
+1. Clone/download this repository
+2. Rename the cloned repository folder to whatever your modpack name is, or leave it for later if unsure. 
+3. Inside of the repository, run the `dev_instance_setup.py` python script
+   - You may look inside of this script with a text editor for instructions on using it, how to download python/java, potential issues, and what it does.
+4. Import the output dev-environment modpack .zip file that the script outputs at `./instanceBuild/modpackname.zip` into prismlauncher (Drag zip file over or right click the background and `create instance`>`import`)
+5. Creating and setting up a repository
+   1. At https://github.com/new, create a new empty repository. You do not need to set a template/license/readme or anything here as it'll be overwritten.
+      - (Replace `username/modpack-repo` with your own name and repo name from the link)
+   2. In a command line using git, run `git remote add origin https://github.com/username/modpack-repo.git` to change the tracked remote from the original template repo to your new modpack repo.
+   3. use `git branch -M main` and `git push -u origin main`, then `git branch -M dev` and `git push -u origin dev` to create both required branches on your github repository.
+6. Follow the [build/release actions setup & usage](https://github.com/Deepacat/deepas-template-modpack/blob/dev/.github/workflows/!README.md) guide to setup repository secrets, learn proper practices, and setup publishing workflow.
 
-By default, the pack comes with a set of mods most packdevs find useful (optimization mods, KubeJS, Jade, etc); To add your mods and resourcepacks, open the project's /minecraft/ folder in a terminal (using a code editor such as VSC is recommended), and run [`java -jar pakku.jar add [<options>] [<projects>]`](https://juraj-hrivnak.github.io/Pakku/managing-projects.html#adding-projects). Pakku will handle dependencies for you.
+### Using this template with an existing Modpack
+1. Follow the above instructions for a new modpack setup
+   - (assuming you don't have an existing repo, if you do you could use this and force push over it? Or remove all files from your original repo and use this guide then push the changes)
+2. Drag over your modpacks folders like `mods`, `configs`, `kubejs` or whatever else is required for your modpack to work into the modpack template repository (Note not deleting the existing mod folder in the template can cause dupes, optimally delete the templates mod folder)
+3. Assuming you have added new mods or replaced the mods folder entirely, open the minecraft folder in a terminal and run `pakku sync` or `java -jar pakku.jar sync` if you didn't install pakku. This will update pakkus modlist used for exporting. (You can use `pakku --yes sync/fetch` to skip all confirmations on the command)
 
-### Importing into an existing repository
-1. In your existing minecraft instance's `/minecraft/` folder, ensure that you have one of the following available: `manifest.json` `modrinth.index.json` `.mrpack`, or a curseforge `.zip` file. [(You can generate one with Prism)](https://github.com/user-attachments/assets/88f3518d-604f-46d9-a319-775c6daa05cb)
-2. Clone the panpack template somewhere, copy over everything but `pakku-lock.json` (and `.gitattributes` and .git folder, of course)
-3. Open up your terminal, [change directory](https://www.wikihow.com/images/thumb/0/08/Change-Directories-in-Command-Prompt-Step-7-Version-2.jpg/v4-460px-Change-Directories-in-Command-Prompt-Step-7-Version-2.jpg.webp) to your instance's `/minecraft/` folder, and run [`java -jar pakku.jar import <file from step 1>`](https://juraj-hrivnak.github.io/Pakku/managing-projects.html#adding-projects)
-4. Edit `minecraft/pakku.json`, and `minecraft/.pakku/prism-overrides/` as applicable, and add `java -jar pakku.jar fetch` to your instance's [prelaunch commands](https://github.com/user-attachments/assets/494a632d-1af4-453d-9329-5454ac3d22da)
+## Usage of this template after setup / Contributing to a repository with this template
+See [CONTRIBUTING.md](https://github.com/Deepacat/deepas-template-modpack/blob/dev/CONTRIBUTING.md)
 
-Don't forget to link to this page in your README so contributors will know how to set up their own instance!
-
-### Contributing to an existing repository that uses this template
-1. Clone your fork of the repository into an empty [`(instancename)\minecraft`](https://github.com/user-attachments/assets/f9de6554-925d-4827-b51c-c7159e6f915f) folder, and copy the contents of `(instancename)\minecraft\.pakku\prism-overrides` into your `(instancename)` folder to have a working Prism Instance. From there, you can start your newly created instances and the mods will be downloaded for you.[^3]
-
-### Building and releasing
-[Read here for build/release actions setup](https://github.com/Deepacat/deepas-template-modpack/blob/dev/.github/workflows/README.md)
-
-## Usage
-* To initate a release, update `CHANGELOG.MD` with a new version, [Unreleased] can be used as a staging ground for changes.
-  * [Unreleased] changes are included in the changelog for builds created from the dev branch.
-* Release type, overrides, and otherwise can be set in pakku.json
-* Give the workflow read/write permissions
+## Github Workflow Building and Publishing
+See [build/release actions setup & usage](https://github.com/Deepacat/deepas-template-modpack/blob/dev/.github/workflows/!README.md)
 
 ## Notes
 * This template supports automatically posting changelogs to discord: add a [discord webhook](https://support.discord.com/hc/en-us/articles/228383668-Intro-to-Webhooks) to your secrets with the name `discord-webhook` if you wish to enable that.
@@ -73,8 +78,8 @@ The API key can be generated in the CurseForge for Studios(https://console.curse
 
 
 ## Credits
-- Buildscript modified from [Terrafirmagreg](https://www.curseforge.com/minecraft/modpacks/terrafirmagreg-modern)
+- This template is a very opinionated fork of [Panpack](https://github.com/ThePansmith/PanPack) with many more preinstalled mods and tools, with additional scripts and a differing dev environment.
+- Buildscripts modified from panpack, which are modified from [Terrafirmagreg](https://www.curseforge.com/minecraft/modpacks/terrafirmagreg-modern)
 
-[^1]: Modrinth buildscripts are disabled by default, as most pack developers do not plan on releasing to modrinth due to important mods not being present, but can be easily uncommented if you do. If so, also add a `MODRINTH_TOKEN` and `MODRINTH_ID` secret and variable.
-[^2]: The included `mmc-pack` is for forge 1.20.1, edit/replace `mmc-pack` with your own if on another version when initially setting up, just remember to add `PreLaunchCommand=java -jar pakku.jar fetch` to it. The repository will automatically update the `mmc-pack` in `prism-overrides` based on your pakku.lock when you push.
-[^3]: In the event that the prelaunch fetch command isn't automatically applied, simply just add `java -jar pakku.jar fetch` (or one of it's varients) to your instance's [prelaunch commands](https://github.com/user-attachments/assets/494a632d-1af4-453d-9329-5454ac3d22da) manually.
+[^1]: Modrinth release support and using non-prism managers is currently not supported.
+[^2]: Don't forget to link to this page in your README so contributors will know how to set up their own instance!

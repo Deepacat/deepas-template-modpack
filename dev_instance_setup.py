@@ -10,7 +10,7 @@ then create a .zip file that can be imported into prismlauncher
 The script will:
     Create a folder named `instanceBuild`
     Download the latest pakku.jar
-    Copy all the modpack files into `instanceBuild/modpack-name` (The modpack name is the same as the root folder name)
+    Copy all the root files into `instanceBuild/modpack-name` (The modpack name is the same as the root folder name)
     Download the required mods using the pakku.jar
     Create a .zip file that can be imported into prismlauncher
 
